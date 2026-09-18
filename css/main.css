@@ -276,11 +276,6 @@ aside {
 	overflow: hidden;
 	background: #ffffff;
 }
-@media (min-width: 1024px) {
-	.monitoring-section {
-		flex-direction: row;
-	}
-}
 
 .monitoring-heading {
 	padding: 24px;

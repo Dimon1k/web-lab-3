@@ -204,10 +204,6 @@ aside {
 	padding: 0;
 	overflow: hidden;
 	background: v.$color-white;
-
-	@include m.respond-to(v.$bp-desktop) {
-		flex-direction: row;
-	}
 }
 
 .monitoring-heading {
