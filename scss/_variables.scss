@@ -1,0 +1,51 @@
+// ==========================================================================
+// Variables — кольори, відступи, розміри, breakpoints
+// ==========================================================================
+
+// Кольори
+$color-primary: #148a3a;
+$color-primary-dark: #17833a;
+$color-text: #071633;
+$color-muted: #53647a;
+$color-muted-2: #425166;
+$color-surface: #f5f8fb;
+$color-surface-alt: #f7faf8;
+$color-white: #ffffff;
+$color-border: #d9e4dd;
+$color-border-blue: #d6e3eb;
+
+$color-success: #148a3a;
+$color-success-text: #00851d;
+$color-danger: #e10000;
+$color-warning-border: #e0ad54;
+$color-warning-bg: #fff8ea;
+$color-warning-badge: #d88916;
+
+$color-header-bg: rgba(255, 255, 255, 0.92);
+$color-header-border: rgba(211, 224, 234, 0.82);
+
+$color-monitoring-dark: #17283a;
+$color-monitoring-dark-text: #dfeaf3;
+$color-monitoring-dark-muted: #cbd8e3;
+
+$color-footer-bg: #1d2c3a;
+$color-footer-text: #ffffff;
+
+// Відступи (spacing scale)
+$space-xs: 4px;
+$space-sm: 8px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 40px;
+
+// Контейнер
+$container-max: 1120px;
+
+// Радіуси
+$radius-sm: 6px;
+$radius-md: 8px;
+$radius-round: 50%;
+
+// Breakpoints (Mobile First: <768 mobile, 768–1024 tablet, >1024 desktop)
+$bp-tablet: 768px;
+$bp-desktop: 1024px;

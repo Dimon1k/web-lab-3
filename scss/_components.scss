@@ -1,0 +1,226 @@
+// ==========================================================================
+// Components — картки, таблиця, форма, кнопки, badges
+// ==========================================================================
+@use "variables" as v;
+@use "mixins" as m;
+@use "sass:color";
+
+// --- Опис компанії -----------------------------------------------------
+#company-description {
+	color: #1b4f43;
+	padding: v.$space-md;
+	background: #edf8f2;
+	border-left: 5px solid #51a981;
+}
+
+// --- Картка моніторингу (кожна колонка monitoring-grid) -----------------
+.monitoring-grid__item {
+	padding: v.$space-md;
+	background: v.$color-white;
+	border: 1px solid v.$color-border-blue;
+	border-radius: v.$radius-sm;
+}
+
+.noise-gauge {
+	@include m.flex-center;
+	flex-direction: column;
+	background: radial-gradient(
+		circle,
+		v.$color-white 42%,
+		#e5f4eb 43%,
+		#e5f4eb 62%,
+		#d9e7f0 63%
+	);
+	border-radius: v.$radius-round;
+	aspect-ratio: 1 / 1;
+	text-align: center;
+
+	strong {
+		display: block;
+		color: v.$color-primary;
+		font-size: 48px;
+		line-height: 1;
+	}
+
+	span {
+		display: block;
+		margin-top: v.$space-sm;
+		color: #516172;
+		font-weight: 700;
+	}
+}
+
+.metric {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: v.$space-xs;
+}
+
+.metric-label {
+	color: #63736b;
+	font-size: 13px;
+}
+
+.status {
+	font-weight: 700;
+}
+
+.status-active {
+	color: #19754f;
+}
+
+.status-warning {
+	color: #a56500;
+}
+
+.status-normal {
+	color: #2f6d42;
+}
+
+// --- Картки послуг --------------------------------------------------------
+// Всередині кожної картки — 1D-стек (заголовок + текст) → Flexbox
+.service-card {
+	display: flex;
+	flex-direction: column;
+	gap: v.$space-sm;
+	padding: v.$space-lg;
+	background: #fbfdfb;
+	border: 1px solid #d5e3dc;
+	border-radius: v.$radius-md;
+	transition: transform 0.25s ease, border-color 0.25s ease,
+		box-shadow 0.25s ease;
+
+	&:hover {
+		border-color: #64b48f;
+		box-shadow: 0 12px 24px rgba(26, 72, 57, 0.14);
+		transform: translateY(-4px);
+	}
+}
+
+// --- Банер попередження ----------------------------------------------------
+.warning-box {
+	position: relative;
+	width: 100%;
+	padding: v.$space-md;
+	padding-right: 70px;
+	background: v.$color-warning-bg;
+	border: 2px solid v.$color-warning-border;
+
+	p {
+		overflow-wrap: break-word;
+	}
+}
+
+.warning-badge {
+	@include m.flex-center;
+	position: absolute;
+	top: 18px;
+	right: 18px;
+	width: 34px;
+	height: 34px;
+	background: v.$color-warning-badge;
+	border-radius: v.$radius-round;
+	color: v.$color-white;
+	font-size: 22px;
+	font-weight: 800;
+}
+
+// --- Таблиця вимірювань ------------------------------------------------------
+// Джерело horizontal overflow → обгортка з overflow-x: auto
+.table-wrapper {
+	width: 100%;
+	overflow-x: auto;
+}
+
+.measurements-table {
+	width: 100%;
+	min-width: 640px;
+	margin-top: v.$space-sm;
+	border: 1px solid #cbd8e4;
+	border-collapse: separate;
+	border-spacing: 0;
+	border-radius: v.$radius-sm;
+	overflow: hidden;
+	background: v.$color-white;
+
+	th,
+	td {
+		padding: 10px v.$space-md;
+		border-right: 1px solid #d4dee8;
+		border-bottom: 1px solid #d4dee8;
+		text-align: left;
+	}
+
+	th {
+		background: #e8eef4;
+		color: v.$color-text;
+		font-weight: 800;
+	}
+
+	tr:last-child td {
+		border-bottom: 0;
+	}
+
+	th:last-child,
+	td:last-child {
+		border-right: 0;
+	}
+}
+
+.danger-text {
+	color: v.$color-danger;
+}
+
+.normal-text {
+	color: v.$color-success-text;
+}
+
+// --- Поля форми --------------------------------------------------------------
+label {
+	display: block;
+	color: #31463e;
+	font-weight: 700;
+}
+
+input,
+select,
+textarea {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	margin-top: v.$space-sm;
+	padding: 12px;
+	border: 1px solid #b9c9c0;
+	border-radius: v.$radius-sm;
+}
+
+input[type="email"] {
+	border-color: #41886d;
+	background: #f4fbf7;
+}
+
+button[type="submit"] {
+	display: inline-block;
+	min-width: 190px;
+	height: 48px;
+	padding: 0 22px;
+	background: #236a55;
+	border: 2px solid #236a55;
+	border-radius: v.$radius-sm;
+	color: v.$color-white;
+	font-size: 16px;
+	font-weight: 800;
+	cursor: pointer;
+	transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+
+	&:hover {
+		background: v.$color-white;
+		color: #236a55;
+		transform: translateY(-2px);
+	}
+}
+
+.footer-contact {
+	display: inline-block;
+}

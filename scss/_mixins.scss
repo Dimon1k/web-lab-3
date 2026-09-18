@@ -1,0 +1,40 @@
+// ==========================================================================
+// Mixins
+// ==========================================================================
+@use "variables" as v;
+
+// Media query mixin (Mobile First — min-width)
+@mixin respond-to($breakpoint) {
+	@media (min-width: $breakpoint) {
+		@content;
+	}
+}
+
+// Центрування flex-елементів
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+// Обгортка-контейнер з максимальною шириною
+@mixin container($max: v.$container-max) {
+	width: 88%;
+	max-width: $max;
+	margin-inline: auto;
+}
+
+// Адаптивна сітка карток: 1 -> $tablet-cols -> $desktop-cols колонок
+@mixin responsive-grid($tablet-cols, $desktop-cols, $gap: v.$space-md) {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: $gap;
+
+	@include respond-to(v.$bp-tablet) {
+		grid-template-columns: repeat($tablet-cols, 1fr);
+	}
+
+	@include respond-to(v.$bp-desktop) {
+		grid-template-columns: repeat($desktop-cols, 1fr);
+	}
+}

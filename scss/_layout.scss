@@ -1,0 +1,293 @@
+// ==========================================================================
+// Layout — header, hero, сітки секцій (Flexbox + CSS Grid)
+// ==========================================================================
+@use 'variables' as v;
+@use 'mixins' as m;
+
+// --- Header -----------------------------------------------------------
+.site-header {
+	position: sticky;
+	top: 0;
+	z-index: 20;
+	background: v.$color-header-bg;
+	border-bottom: 1px solid v.$color-header-border;
+	box-shadow: 0 10px 28px rgba(19, 38, 55, 0.08);
+}
+
+.top-bar {
+	@include m.container;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: v.$space-sm;
+	padding: v.$space-md 0;
+
+	@include m.respond-to(v.$bp-tablet) {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
+
+.brand-name {
+	display: block;
+	color: v.$color-text;
+	font-size: 24px;
+	line-height: 1.15;
+
+	@include m.respond-to(v.$bp-tablet) {
+		font-size: 28px;
+	}
+}
+
+.brand-slogan {
+	display: block;
+	color: v.$color-muted;
+	font-size: 15px;
+}
+
+// Навігація — 1D-компонент, тому Flexbox
+.main-nav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: v.$space-md;
+}
+
+.main-nav a {
+	display: inline-block;
+	padding: 6px 0;
+	border-bottom: 3px solid transparent;
+	font-weight: 700;
+
+	&:hover,
+	&.active-link {
+		color: v.$color-primary-dark;
+		text-decoration: none;
+		border-bottom-color: v.$color-primary-dark;
+	}
+}
+
+.section-label {
+	display: inline-block;
+	margin-bottom: 14px;
+	padding: 5px 11px;
+	background: #e7f6ec;
+	border: 1px solid #c5e5d0;
+	border-radius: v.$radius-sm;
+	color: v.$color-primary-dark;
+	font-size: 13px;
+	font-weight: 800;
+	text-transform: uppercase;
+}
+
+// --- Hero ----------------------------------------------------------------
+// Один вимір (картинка + кнопка внизу) — досить position/flex, без Grid
+.hero-section {
+	position: relative;
+	width: 100%;
+	height: 260px;
+	margin: -1px 0 0;
+	overflow: hidden;
+	padding: 0;
+
+	@include m.respond-to(v.$bp-tablet) {
+		height: 340px;
+	}
+
+	@include m.respond-to(v.$bp-desktop) {
+		height: 480px;
+
+		img {
+			object-fit: contain;
+		}
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+	}
+}
+
+.hero-order-button {
+	position: absolute;
+	left: 50%;
+	bottom: v.$space-lg;
+	display: inline-block;
+	width: calc(100% - 32px);
+	max-width: 320px;
+	padding: 14px v.$space-lg;
+	background: v.$color-primary;
+	border: 2px solid v.$color-primary;
+	border-radius: v.$radius-sm;
+	box-shadow: 0 14px 28px rgba(10, 58, 31, 0.22);
+	color: v.$color-white;
+	font-weight: 800;
+	text-align: center;
+	transform: translateX(-50%);
+	transition:
+		background 0.25s ease,
+		color 0.25s ease,
+		transform 0.25s ease,
+		box-shadow 0.25s ease;
+
+	&:hover {
+		background: v.$color-white;
+		color: v.$color-primary;
+		text-decoration: none;
+		transform: translateX(-50%) translateY(-2px);
+	}
+}
+
+// --- Основний контейнер ---------------------------------------------------
+main {
+	@include m.container;
+	margin-top: v.$space-xl;
+	margin-bottom: v.$space-xl;
+}
+
+section,
+aside {
+	margin-bottom: v.$space-lg;
+	padding: v.$space-lg;
+	background: v.$color-white;
+	border: 1px solid v.$color-border;
+	border-radius: v.$radius-md;
+}
+
+// --- Intro-секція: 2D-структура тексту та highlight-карток → Grid --------
+.intro-section {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: v.$space-lg;
+	padding: v.$space-lg;
+
+	@include m.respond-to(v.$bp-desktop) {
+		grid-template-columns: 62% 1fr;
+	}
+}
+
+// Плашки-highlight всередині intro — вертикальний 1D-стек → Flexbox
+.intro-highlights {
+	display: flex;
+	flex-direction: column;
+	gap: v.$space-sm;
+}
+
+.highlight-item {
+	display: flex;
+	align-items: center;
+	gap: v.$space-md;
+	padding: 17px 18px;
+	background: v.$color-surface-alt;
+	border: 1px solid #d9e7de;
+	border-radius: v.$radius-md;
+
+	strong {
+		flex-shrink: 0;
+		min-width: 64px;
+		color: v.$color-primary;
+		font-size: 28px;
+		line-height: 1;
+	}
+
+	span {
+		color: v.$color-muted-2;
+	}
+}
+
+// --- Моніторинг ------------------------------------------------------------
+.monitoring-section {
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+	overflow: hidden;
+	background: v.$color-white;
+
+	@include m.respond-to(v.$bp-desktop) {
+		flex-direction: row;
+	}
+}
+
+.monitoring-heading {
+	padding: v.$space-lg;
+	background: v.$color-monitoring-dark;
+	color: v.$color-monitoring-dark-text;
+
+	@include m.respond-to(v.$bp-desktop) {
+		flex: 0 0 36%;
+		padding: 34px 30px;
+	}
+
+	h2 {
+		color: v.$color-white;
+	}
+
+	p {
+		color: v.$color-monitoring-dark-muted;
+	}
+}
+
+// Вимога: 5 карток моніторингу → 1 колонка (mobile) → 2 (tablet) → 5 (desktop)
+.monitoring-grid {
+	@include m.responsive-grid(2, 5, v.$space-md);
+	flex: 1 1 auto;
+	padding: v.$space-lg;
+	background: #f8fbfd;
+
+	@include m.respond-to(v.$bp-desktop) {
+		align-items: stretch;
+	}
+}
+
+// --- Напрями роботи ---------------------------------------------------------
+// Вимога: картки services → 1 → 2 → 4 колонки
+.services-grid {
+	@include m.responsive-grid(2, 4, v.$space-md);
+}
+
+// --- Форма замовлення --------------------------------------------------------
+.order-form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.form__fields {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: v.$space-md;
+
+	@include m.respond-to(v.$bp-tablet) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.form__description {
+		@include m.respond-to(v.$bp-tablet) {
+			grid-column: 1 / -1;
+		}
+	}
+}
+
+// --- Footer ------------------------------------------------------------------
+footer {
+	padding: v.$space-lg 6%;
+	background: v.$color-footer-bg;
+	color: v.$color-footer-text;
+	text-align: center;
+}
+
+.footer__inner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: v.$space-md;
+
+	@include m.respond-to(v.$bp-tablet) {
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		text-align: left;
+	}
+}
